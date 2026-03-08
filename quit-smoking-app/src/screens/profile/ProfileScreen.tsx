@@ -1,12 +1,9 @@
 import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useUser } from "@/state/user-provider";
-import { calculateCurrentStreak } from "@/selectors/progress-selectors";
-import { ScreenContainer } from "@/components/layout/ScreenContainer";
-import { Card } from "@/components/layout/Card";
-import { SectionHeader } from "@/components/layout/SectionHeader";
-import { Divider } from "@/components/layout/Divider";
-import { tokens } from "@/theme/tokens";
+import { useUser } from "@/src/state";
+import { calculateCurrentStreak } from "@/src/selectors";
+import { ScreenContainer, Card, SectionHeader, Divider } from "@/src/components/layout";
+import { spacing, radii, colors } from "@/src/theme";
 
 const PROFILE_SECTIONS = [
   { id: "reasons", label: "Quitting Reasons", description: "Your personal motivations", screen: "ReasonsScreen" },
@@ -20,7 +17,6 @@ export const ProfileScreen = () => {
   const { state } = useUser();
 
   const currentStreak = calculateCurrentStreak(state);
-  const daysQuit = Math.floor((Date.now() - new Date(state.quitStartDate).getTime()) / (1000 * 60 * 60 * 24));
 
   return (
     <ScreenContainer>
@@ -28,7 +24,7 @@ export const ProfileScreen = () => {
         {/* Header with identity info */}
         <View style={styles.headerSection}>
           <Text style={styles.title}>You</Text>
-          <Card style={styles.identityCard}>
+          <Card>
             <View style={styles.identityContent}>
               <Text style={styles.identityLabel}>Days as a Non-Smoker</Text>
               <Text style={styles.streakNumber}>{currentStreak}</Text>
@@ -37,7 +33,7 @@ export const ProfileScreen = () => {
           </Card>
         </View>
 
-        <Divider style={styles.divider} />
+        <Divider />
 
         {/* Profile sections */}
         <SectionHeader title="My Profile" />
@@ -48,7 +44,7 @@ export const ProfileScreen = () => {
               onPress={() => navigation.navigate(section.screen)}
               style={({ pressed }) => [styles.sectionItem, pressed && styles.sectionItemPressed]}
             >
-              <Card style={styles.sectionCard}>
+              <Card>
                 <View style={styles.sectionContent}>
                   <View style={styles.sectionTextContainer}>
                     <Text style={styles.sectionLabel}>{section.label}</Text>
@@ -62,7 +58,7 @@ export const ProfileScreen = () => {
         </View>
 
         {/* Data status */}
-        <Divider style={styles.divider} />
+        <Divider />
         <View style={styles.dataStatusSection}>
           <Text style={styles.dataStatusLabel}>All data stored locally on your device</Text>
           <Text style={styles.dataStatusNote}>No account needed. No data shared.</Text>
@@ -74,31 +70,31 @@ export const ProfileScreen = () => {
 
 const styles = StyleSheet.create({
   scrollContent: {
-    paddingVertical: tokens.spacing.md,
-    paddingHorizontal: tokens.spacing.md,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.md,
   },
   headerSection: {
-    marginBottom: tokens.spacing.lg,
+    marginBottom: spacing.lg,
   },
   title: {
     fontSize: 28,
     fontWeight: "700",
-    color: tokens.colors.text,
-    marginBottom: tokens.spacing.md,
+    color: colors.text,
+    marginBottom: spacing.md,
   },
   identityCard: {
-    paddingVertical: tokens.spacing.lg,
-    paddingHorizontal: tokens.spacing.lg,
-    backgroundColor: tokens.colors.background,
+    paddingVertical: spacing.lg,
+    paddingHorizontal: spacing.lg,
+    backgroundColor: colors.background,
     borderLeftWidth: 4,
-    borderLeftColor: tokens.colors.primary,
+    borderLeftColor: colors.primary,
   },
   identityContent: {
     alignItems: "center",
   },
   identityLabel: {
     fontSize: 12,
-    color: tokens.colors.textSecondary,
+    color: colors.textSecondary,
     fontWeight: "500",
     letterSpacing: 0.5,
     textTransform: "uppercase",
@@ -106,19 +102,19 @@ const styles = StyleSheet.create({
   streakNumber: {
     fontSize: 48,
     fontWeight: "700",
-    color: tokens.colors.primary,
-    marginTop: tokens.spacing.sm,
+    color: colors.primary,
+    marginTop: spacing.sm,
   },
   dateNote: {
     fontSize: 12,
-    color: tokens.colors.textSecondary,
-    marginTop: tokens.spacing.sm,
+    color: colors.textSecondary,
+    marginTop: spacing.sm,
   },
   divider: {
-    marginVertical: tokens.spacing.lg,
+    marginVertical: spacing.lg,
   },
   sectionsContainer: {
-    gap: tokens.spacing.md,
+    gap: spacing.md,
   },
   sectionItem: {
     marginBottom: 0,
@@ -127,8 +123,8 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   sectionCard: {
-    paddingVertical: tokens.spacing.md,
-    paddingHorizontal: tokens.spacing.md,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.md,
   },
   sectionContent: {
     flexDirection: "row",
@@ -137,40 +133,40 @@ const styles = StyleSheet.create({
   },
   sectionTextContainer: {
     flex: 1,
-    marginRight: tokens.spacing.md,
+    marginRight: spacing.md,
   },
   sectionLabel: {
     fontSize: 16,
     fontWeight: "600",
-    color: tokens.colors.text,
-    marginBottom: tokens.spacing.xs,
+    color: colors.text,
+    marginBottom: spacing.xs,
   },
   sectionDescription: {
     fontSize: 13,
-    color: tokens.colors.textSecondary,
+    color: colors.textSecondary,
     lineHeight: 18,
   },
   chevron: {
     fontSize: 24,
-    color: tokens.colors.textSecondary,
+    color: colors.textSecondary,
     fontWeight: "300",
   },
   dataStatusSection: {
-    marginTop: tokens.spacing.md,
-    paddingHorizontal: tokens.spacing.md,
-    paddingVertical: tokens.spacing.md,
-    backgroundColor: `${tokens.colors.primary}10`,
-    borderRadius: tokens.radii.md,
+    marginTop: spacing.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.md,
+    backgroundColor: `${colors.primary}10`,
+    borderRadius: radii.md,
   },
   dataStatusLabel: {
     fontSize: 13,
     fontWeight: "600",
-    color: tokens.colors.text,
-    marginBottom: tokens.spacing.xs,
+    color: colors.text,
+    marginBottom: spacing.xs,
   },
   dataStatusNote: {
     fontSize: 12,
-    color: tokens.colors.textSecondary,
+    color: colors.textSecondary,
     lineHeight: 16,
   },
 });
