@@ -229,16 +229,16 @@
 - [X] Never upsell during craving or relapse crisis flows.
 
 ## 15. QA, Testing, and Reliability
-- [ ] Unit test selectors and business logic edge cases.
-- [ ] Unit test reducer transitions and persistence triggers.
-- [ ] Test onboarding gating and `navigation.reset` behavior.
-- [ ] Test relapse/recovery transitions including multiple relapses.
-- [ ] Test notification schedule/cancel/reschedule behavior.
-- [ ] Test premium gate matrix for free vs premium users.
-- [ ] Test timezone change handling.
-- [ ] Test first-run with denied notification permissions.
-- [ ] Test app restart hydration consistency.
-- [ ] Validate all copy tone is calm/supportive and non-shaming.
+- [X] Unit test selectors and business logic edge cases.
+- [X] Unit test reducer transitions and persistence triggers.
+- [X] Test onboarding gating and `navigation.reset` behavior.
+- [X] Test relapse/recovery transitions including multiple relapses.
+- [X] Test notification schedule/cancel/reschedule behavior.
+- [X] Test premium gate matrix for free vs premium users.
+- [X] Test timezone change handling.
+- [X] Test first-run with denied notification permissions.
+- [X] Test app restart hydration consistency.
+- [X] Validate all copy tone is calm/supportive and non-shaming.
 
 ## 16. Release Readiness
 - [ ] Final copy review for emotional precision and consistency.
