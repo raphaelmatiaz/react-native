@@ -1,50 +1,52 @@
-# Welcome to your Expo app 👋
+# StreakQuit
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+StreakQuit is a calm, local-first quit-smoking app built with Expo and React Native.
 
-## Get started
+## Product Direction
+- Identity-first behavior change support.
+- Non-shaming relapse and recovery experience.
+- Local-only storage by default (AsyncStorage).
+- Ethical premium model with no crisis-context upsell.
 
-1. Install dependencies
+## Core Features
+- Onboarding with quit profile and personal reasons.
+- Home flow with craving and relapse actions.
+- Guided craving intervention flow.
+- Relapse logging with recovery mode support.
+- Progress metrics and milestone timeline.
+- Profile area: reasons, journal, settings, premium.
+- Notification scheduling and milestone reminders.
 
-   ```bash
-   npm install
-   ```
+## Development
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Run app:
 
-## Learn more
+```bash
+npm run start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Quality checks:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm run lint
+npm run typecheck
+npm run test
+```
 
-## Join the community
+## Release Readiness Artifacts
+- `eas.json` includes `development`, `preview`, and `production` build profiles.
+- See `../knowledge-base/aso-metadata.md` for listing metadata and screenshot plan.
+- See `../knowledge-base/release-copy-review.md` for tone review guidance.
+- See `../knowledge-base/privacy-local-only.md` for legal/privacy wording.
+- See `../knowledge-base/launch-checklist.md` for launch checklist and metrics plan.
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Privacy Model
+- User data is stored locally on the device.
+- No required account for core quit functionality.
+- App reset clears locally stored data.

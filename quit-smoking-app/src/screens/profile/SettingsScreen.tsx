@@ -102,6 +102,17 @@ export const SettingsScreen = () => {
           )}
         </Card>
 
+        <Card>
+          <Text style={styles.label}>Legal & Privacy</Text>
+          <Text style={styles.helperText}>
+            Your quit data stays on this device by default. We do not require an account or cloud
+            sync for core app use.
+          </Text>
+          <Text style={styles.helperText}>
+            Use Reset App below if you want to clear your local data and start over.
+          </Text>
+        </Card>
+
         <Divider />
 
         <SectionHeader title="Data" />

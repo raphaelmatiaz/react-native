@@ -241,13 +241,13 @@
 - [X] Validate all copy tone is calm/supportive and non-shaming.
 
 ## 16. Release Readiness
-- [ ] Final copy review for emotional precision and consistency.
-- [ ] App icon, splash, and store assets aligned to positioning.
-- [ ] Validate ASO metadata and screenshots.
-- [ ] Add legal/privacy copy clarifying local-only data model.
-- [ ] Verify EAS build profiles for dev/preview/prod.
+- [X] Final copy review for emotional precision and consistency.
+- [X] App icon, splash, and store assets aligned to positioning.
+- [X] Validate ASO metadata and screenshots.
+- [X] Add legal/privacy copy clarifying local-only data model.
+- [X] Verify EAS build profiles for dev/preview/prod.
 - [ ] Run production builds and smoke tests on target devices.
-- [ ] Prepare launch checklist and post-launch metric tracking plan.
+- [X] Prepare launch checklist and post-launch metric tracking plan.
 
 ## 17. Post-MVP Backlog (Explicitly Out of Scope)
 - [ ] Social features
