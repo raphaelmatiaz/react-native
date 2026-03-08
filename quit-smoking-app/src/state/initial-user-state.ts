@@ -29,5 +29,8 @@ export const createInitialUserState = (): UserState => {
     recoveryMode: {
       active: false,
     },
+    milestones: {
+      deliveredDays: [],
+    },
   };
 };

@@ -1,6 +1,7 @@
 import type {
   CravingLog,
   JournalEntry,
+  MilestoneDay,
   NotificationSettings,
   RelapseLog,
 } from "@/src/domain";
@@ -68,6 +69,10 @@ export type UserAction =
   | {
       type: "UPDATE_NOTIFICATION_SETTINGS";
       payload: Partial<NotificationSettings>;
+    }
+  | {
+      type: "MARK_MILESTONE_DELIVERED";
+      payload: MilestoneDay;
     }
   | {
       type: "RESET_APP";

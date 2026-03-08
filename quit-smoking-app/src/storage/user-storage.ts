@@ -28,6 +28,10 @@ export const migrateUserState = (value: unknown): UserState => {
       ...fallbackState.recoveryMode,
       ...(candidate.recoveryMode ?? {}),
     },
+    milestones: {
+      ...fallbackState.milestones,
+      ...(candidate.milestones ?? {}),
+    },
     benefits: candidate.benefits ?? fallbackState.benefits,
     cravingLogs: candidate.cravingLogs ?? fallbackState.cravingLogs,
     relapseLogs: candidate.relapseLogs ?? fallbackState.relapseLogs,

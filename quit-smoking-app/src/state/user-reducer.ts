@@ -70,6 +70,18 @@ export const userReducer = (state: UserState, action: UserAction): UserState => 
           ...action.payload,
         },
       };
+    case "MARK_MILESTONE_DELIVERED":
+      if (state.milestones.deliveredDays.includes(action.payload)) {
+        return state;
+      }
+
+      return {
+        ...state,
+        milestones: {
+          ...state.milestones,
+          deliveredDays: [...state.milestones.deliveredDays, action.payload],
+        },
+      };
     case "RESET_APP":
       return createInitialUserState();
     default:

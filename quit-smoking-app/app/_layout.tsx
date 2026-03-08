@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { NotificationManager } from '@/src/services/notifications';
 import { UserProvider } from '@/src/state';
 
 export default function RootLayout() {
@@ -11,6 +12,7 @@ export default function RootLayout() {
 
   return (
     <UserProvider>
+      <NotificationManager />
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />

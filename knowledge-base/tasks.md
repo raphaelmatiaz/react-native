@@ -199,14 +199,14 @@
 - [X] Build `PremiumScreen` paywall and restore action.
 
 ## 13. Notifications
-- [ ] Configure Expo notifications setup and permissions.
-- [ ] Schedule repeating daily morning notification at `morningTime`.
-- [ ] Schedule repeating daily evening notification at `eveningTime`.
-- [ ] Schedule additional every-12-hours notifications during recovery mode.
-- [ ] Cancel recovery notifications when recovery mode expires.
-- [ ] Trigger one-time milestone notifications and store delivered flags.
-- [ ] On app resume, detect timezone changes and reschedule as needed.
-- [ ] Ensure app behaves normally if permission denied.
+- [X] Configure Expo notifications setup and permissions.
+- [X] Schedule repeating daily morning notification at `morningTime`.
+- [X] Schedule repeating daily evening notification at `eveningTime`.
+- [X] Schedule additional every-12-hours notifications during recovery mode.
+- [X] Cancel recovery notifications when recovery mode expires.
+- [X] Trigger one-time milestone notifications and store delivered flags.
+- [X] On app resume, detect timezone changes and reschedule as needed.
+- [X] Ensure app behaves normally if permission denied.
 
 ## 14. Premium and Purchase Logic
 - [ ] Configure IAP products:
