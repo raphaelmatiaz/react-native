@@ -1,11 +1,15 @@
 import { ScrollView, StyleSheet, Text, View, TextInput, Switch, Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { useUser } from "@/src/state";
 import { ScreenContainer, Card, SectionHeader, Divider } from "@/src/components/layout";
 import { SecondaryButton } from "@/src/components/core";
 import { spacing, radii, colors } from "@/src/theme";
+import { canAccessThemeCustomization } from "@/src/selectors";
 
 export const SettingsScreen = () => {
+  const navigation = useNavigation<any>();
   const { state, dispatch } = useUser();
+  const hasThemeAccess = canAccessThemeCustomization(state);
 
   const handleTimeChange = (field: "morningTime" | "eveningTime", value: string) => {
     dispatch({
@@ -81,6 +85,23 @@ export const SettingsScreen = () => {
           />
         </Card>
 
+        <Card>
+          <Text style={styles.label}>Theme Customization</Text>
+          <Text style={styles.helperText}>
+            {hasThemeAccess
+              ? "Theme controls are available in Premium settings."
+              : "Premium required for advanced theme customization."}
+          </Text>
+          {!hasThemeAccess && (
+            <Text
+              style={styles.premiumLink}
+              onPress={() => navigation.navigate("PremiumScreen")}
+            >
+              View Premium
+            </Text>
+          )}
+        </Card>
+
         <Divider />
 
         <SectionHeader title="Data" />
@@ -125,5 +146,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.error,
     lineHeight: 16,
+  },
+  helperText: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    lineHeight: 18,
+  },
+  premiumLink: {
+    marginTop: spacing.sm,
+    fontSize: 13,
+    fontWeight: "700",
+    color: colors.primary,
   },
 });

@@ -1,8 +1,17 @@
 import { ScrollView, StyleSheet, Text, View, Alert } from "react-native";
+import { useEffect, useState } from "react";
 import { useUser } from "@/src/state";
 import { ScreenContainer, Card, SectionHeader, Divider } from "@/src/components/layout";
 import { PrimaryButton, SecondaryButton } from "@/src/components/core";
 import { spacing, radii, colors } from "@/src/theme";
+import {
+  loadPremiumProductsAsync,
+  purchasePremiumPlanAsync,
+  restorePremiumPurchasesAsync,
+  type PremiumPlan,
+  type PremiumProduct,
+} from "@/src/services/premium";
+import { isPremiumActive } from "@/src/selectors";
 
 const PREMIUM_FEATURES = [
   { icon: "📊", title: "Trigger Heatmap" },
@@ -10,19 +19,67 @@ const PREMIUM_FEATURES = [
   { icon: "🎨", title: "Theme Customization" },
 ];
 
-const PRICING_PLANS = [
-  { id: "yearly", label: "Yearly", price: "$9.99" },
-  { id: "lifetime", label: "Lifetime", price: "$29.99" },
-];
-
 export const PremiumScreen = () => {
-  const { state } = useUser();
+  const { state, dispatch } = useUser();
+  const [products, setProducts] = useState<PremiumProduct[]>([]);
+  const [busyPlan, setBusyPlan] = useState<PremiumPlan | "restore" | null>(null);
 
-  const handlePurchase = (plan: string) => {
-    Alert.alert("Feature coming soon", `${plan} plan purchase will be available soon.`);
+  const premiumEnabled = isPremiumActive(state);
+
+  useEffect(() => {
+    const load = async () => {
+      const result = await loadPremiumProductsAsync();
+      setProducts(result);
+    };
+
+    void load();
+  }, []);
+
+  const applyPremiumPurchase = (
+    purchaseDate?: string,
+    expiryDate?: string,
+    lifetime?: boolean,
+  ) => {
+    dispatch({
+      type: "TOGGLE_PREMIUM",
+      payload: {
+        isPremium: true,
+        purchaseDate,
+        expiryDate,
+        lifetime: Boolean(lifetime),
+      },
+    });
   };
 
-  if (state.premium.isPremium) {
+  const handlePurchase = async (plan: PremiumPlan) => {
+    setBusyPlan(plan);
+    const result = await purchasePremiumPlanAsync(plan);
+
+    if (result.success) {
+      applyPremiumPurchase(result.purchaseDate, result.expiryDate, result.lifetime);
+      Alert.alert("Premium Activated", result.message ?? "Your premium access is now active.");
+    } else {
+      Alert.alert("Purchase not completed", result.message ?? "Please try again.");
+    }
+
+    setBusyPlan(null);
+  };
+
+  const handleRestore = async () => {
+    setBusyPlan("restore");
+    const result = await restorePremiumPurchasesAsync();
+
+    if (result.success) {
+      applyPremiumPurchase(result.purchaseDate, result.expiryDate, result.lifetime);
+      Alert.alert("Purchases Restored", result.message ?? "Premium has been restored.");
+    } else {
+      Alert.alert("Restore complete", result.message ?? "No eligible purchases found.");
+    }
+
+    setBusyPlan(null);
+  };
+
+  if (premiumEnabled) {
     return (
       <ScreenContainer>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
@@ -42,7 +99,10 @@ export const PremiumScreen = () => {
           ))}
 
           <Divider />
-          <SecondaryButton label="Manage Subscription" onPress={() => {}} />
+          <SecondaryButton
+            label="Restore Purchases"
+            onPress={handleRestore}
+          />
         </ScrollView>
       </ScreenContainer>
     );
@@ -65,19 +125,25 @@ export const PremiumScreen = () => {
         <Divider />
         <SectionHeader title="Choose Your Plan" />
 
-        {PRICING_PLANS.map((plan) => (
-          <Card key={plan.id}>
+        {products.map((plan) => (
+          <Card key={plan.productId}>
             <View style={styles.planRow}>
               <View>
-                <Text style={styles.planLabel}>{plan.label}</Text>
+                <Text style={styles.planLabel}>{plan.title}</Text>
                 <Text style={styles.planPrice}>{plan.price}</Text>
               </View>
-              <PrimaryButton label="Get" onPress={() => handlePurchase(plan.label)} />
+              <PrimaryButton
+                label={busyPlan === plan.productId ? "Processing..." : "Get"}
+                onPress={() => handlePurchase(plan.productId)}
+              />
             </View>
           </Card>
         ))}
 
-        <SecondaryButton label="Restore Purchases" onPress={() => {}} />
+        <SecondaryButton
+          label={busyPlan === "restore" ? "Restoring..." : "Restore Purchases"}
+          onPress={handleRestore}
+        />
 
         <View style={styles.disclaimer}>
           <Text style={styles.disclaimerText}>Prices are subject to change. Your subscription renews automatically.</Text>

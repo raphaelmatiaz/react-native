@@ -7,9 +7,11 @@ import { PrimaryButton, SecondaryButton } from "@/src/components/core";
 import { Card, ScreenContainer, SectionHeader, Divider } from "@/src/components/layout";
 import { useUser } from "@/src/state";
 import {
+  canAccessExtendedRecoveryMode,
   calculateCurrentStreak,
   calculateUrgeResilienceScore,
   getUrgeResilienceLabel,
+  shouldShowEthicalUpsell,
 } from "@/src/selectors";
 import type { TriggerType } from "@/src/domain";
 import { colors, spacing } from "@/src/theme";
@@ -23,6 +25,8 @@ export const HomeScreen = () => {
   const currentStreak = calculateCurrentStreak(state);
   const resilienceScore = calculateUrgeResilienceScore(state);
   const resilienceLabel = getUrgeResilienceLabel(resilienceScore);
+  const shouldShowPremiumUpsell =
+    shouldShowEthicalUpsell(state, "home") && !relapseModalVisible;
 
   const handleRelapse = () => {
     const now = new Date().toISOString();
@@ -36,16 +40,21 @@ export const HomeScreen = () => {
       },
     });
 
+    const recoveryHours = canAccessExtendedRecoveryMode(state) ? 72 : 48;
+
     dispatch({
       type: "ACTIVATE_RECOVERY",
       payload: {
         activatedAt: now,
-        expiresAt: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
+        expiresAt: new Date(Date.now() + recoveryHours * 60 * 60 * 1000).toISOString(),
       },
     });
 
     setRelapseModalVisible(false);
-    Alert.alert("Recovery Mode Activated", "You have 48 hours of extra support.");
+    Alert.alert(
+      "Recovery Mode Activated",
+      `You have ${recoveryHours} hours of extra support.`,
+    );
   };
 
   return (
@@ -88,18 +97,20 @@ export const HomeScreen = () => {
 
         <Divider />
 
-        <View style={styles.section}>
-          <Card>
-            <Text style={styles.upsellTitle}>Continue your journey</Text>
-            <Text style={styles.upsellText}>
-              Premium tools help you understand and prevent your unique relapse triggers.
-            </Text>
-            <PrimaryButton
-              label="Learn about Premium"
-              onPress={() => navigation.navigate("You", { screen: "PremiumScreen" })}
-            />
-          </Card>
-        </View>
+        {shouldShowPremiumUpsell && (
+          <View style={styles.section}>
+            <Card>
+              <Text style={styles.upsellTitle}>Continue your journey</Text>
+              <Text style={styles.upsellText}>
+                Premium tools help you understand and prevent your unique relapse triggers.
+              </Text>
+              <PrimaryButton
+                label="Learn about Premium"
+                onPress={() => navigation.navigate("You", { screen: "PremiumScreen" })}
+              />
+            </Card>
+          </View>
+        )}
       </ScrollView>
 
       <Modal

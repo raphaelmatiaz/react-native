@@ -209,24 +209,24 @@
 - [X] Ensure app behaves normally if permission denied.
 
 ## 14. Premium and Purchase Logic
-- [ ] Configure IAP products:
-- [ ] `yearly_subscription`
-- [ ] `lifetime_unlock`
-- [ ] Implement purchase success handling:
-- [ ] set `premium.isPremium = true`
-- [ ] set `purchaseDate`
-- [ ] yearly sets `expiryDate`
-- [ ] lifetime sets `lifetime = true`
-- [ ] Implement launch-time expiry validation.
-- [ ] Implement restore purchases flow.
-- [ ] Gate features:
-- [ ] trigger heatmap
-- [ ] advanced relapse analysis
-- [ ] theme customization
-- [ ] extended recovery mode
-- [ ] Keep core quitting functionality fully free.
-- [ ] Implement ethical upsell timings (7 days, 30 days, 20 resisted cravings).
-- [ ] Never upsell during craving or relapse crisis flows.
+- [X] Configure IAP products:
+- [X] `yearly_subscription`
+- [X] `lifetime_unlock`
+- [X] Implement purchase success handling:
+- [X] set `premium.isPremium = true`
+- [X] set `purchaseDate`
+- [X] yearly sets `expiryDate`
+- [X] lifetime sets `lifetime = true`
+- [X] Implement launch-time expiry validation.
+- [X] Implement restore purchases flow.
+- [X] Gate features:
+- [X] trigger heatmap
+- [X] advanced relapse analysis
+- [X] theme customization
+- [X] extended recovery mode
+- [X] Keep core quitting functionality fully free.
+- [X] Implement ethical upsell timings (7 days, 30 days, 20 resisted cravings).
+- [X] Never upsell during craving or relapse crisis flows.
 
 ## 15. QA, Testing, and Reliability
 - [ ] Unit test selectors and business logic edge cases.

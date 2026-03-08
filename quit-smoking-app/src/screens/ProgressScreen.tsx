@@ -1,9 +1,12 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { ProgressMetricCard, MilestoneCard } from "@/src/components/features";
 import { ScreenContainer, SectionHeader, Divider } from "@/src/components/layout";
 import { useUser } from "@/src/state";
 import {
+  canAccessAdvancedRelapseAnalysis,
+  canAccessTriggerHeatmap,
   calculateCurrentStreak,
   calculateLongestStreak,
   calculateSmokeFreePercentage,
@@ -21,6 +24,7 @@ const MILESTONES = [
 ];
 
 export const ProgressScreen = () => {
+  const navigation = useNavigation<any>();
   const { state } = useUser();
 
   const currentStreak = calculateCurrentStreak(state);
@@ -28,6 +32,8 @@ export const ProgressScreen = () => {
   const smokeFreePct = calculateSmokeFreePercentage(state, 30);
   const cigarettesAvoided = calculateCigarettesAvoided(state);
   const moneySaved = calculateMoneySaved(state);
+  const hasHeatmap = canAccessTriggerHeatmap(state);
+  const hasAdvancedRelapse = canAccessAdvancedRelapseAnalysis(state);
 
   return (
     <ScreenContainer>
@@ -50,6 +56,30 @@ export const ProgressScreen = () => {
         <View style={styles.metricsGrid}>
           <ProgressMetricCard label="Money Saved" value={`$${moneySaved.toFixed(2)}`} />
         </View>
+
+        <SectionHeader title="Premium Analytics" subtitle="Optional deeper pattern insights" />
+
+        <View style={styles.metricsGrid}>
+          <ProgressMetricCard
+            label="Trigger Heatmap"
+            value={hasHeatmap ? "Unlocked" : "Premium"}
+          />
+          <ProgressMetricCard
+            label="Relapse Analysis"
+            value={hasAdvancedRelapse ? "Unlocked" : "Premium"}
+          />
+        </View>
+
+        {(!hasHeatmap || !hasAdvancedRelapse) && (
+          <View style={styles.lockedCard}>
+            <Text style={styles.lockedText}>
+              Unlock trigger heatmaps and advanced relapse analysis in Premium.
+            </Text>
+            <Text style={styles.lockedLink} onPress={() => navigation.navigate("You", { screen: "PremiumScreen" })}>
+              View Premium
+            </Text>
+          </View>
+        )}
 
         <Divider />
 
@@ -80,6 +110,22 @@ const styles = StyleSheet.create({
   },
   milestonesList: {
     gap: spacing.md,
+  },
+  lockedCard: {
+    marginBottom: spacing.lg,
+    padding: spacing.md,
+    borderRadius: 12,
+    backgroundColor: "#F6F9FC",
+    gap: spacing.xs,
+  },
+  lockedText: {
+    fontSize: 13,
+    color: "#3A4A5A",
+  },
+  lockedLink: {
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#2F80ED",
   },
 });
 
