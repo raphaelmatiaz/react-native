@@ -177,26 +177,26 @@
 - [X] Surface additional recovery support UX while active.
 
 ## 11. Progress Screen
-- [ ] Show metrics cards:
-- [ ] total smoke-free days
-- [ ] longest streak
-- [ ] cigarettes not smoked
-- [ ] money saved
-- [ ] Show evidence-based lung recovery timeline milestones.
-- [ ] Implement milestone unlock tracking.
-- [ ] Ensure milestone notifications fire only once.
+- [X] Show metrics cards:
+- [X] total smoke-free days
+- [X] longest streak
+- [X] cigarettes not smoked
+- [X] money saved
+- [X] Show evidence-based lung recovery timeline milestones.
+- [X] Implement milestone unlock tracking.
+- [X] Ensure milestone notifications fire only once.
 
 ## 12. You / Profile Area
-- [ ] Build `ProfileScreen` identity hub.
-- [ ] Build `ReasonsScreen` for editing quitting reasons.
-- [ ] Build `JournalScreen` (local-only entries CRUD-lite).
-- [ ] Build `SettingsScreen`:
-- [ ] notification times
-- [ ] milestone notification toggle
-- [ ] app reset
-- [ ] theme (premium-gated)
-- [ ] legal info placeholder
-- [ ] Build `PremiumScreen` paywall and restore action.
+- [X] Build `ProfileScreen` identity hub.
+- [X] Build `ReasonsScreen` for editing quitting reasons.
+- [X] Build `JournalScreen` (local-only entries CRUD-lite).
+- [X] Build `SettingsScreen`:
+- [X] notification times
+- [X] milestone notification toggle
+- [X] app reset
+- [X] theme (premium-gated)
+- [X] legal info placeholder
+- [X] Build `PremiumScreen` paywall and restore action.
 
 ## 13. Notifications
 - [ ] Configure Expo notifications setup and permissions.
