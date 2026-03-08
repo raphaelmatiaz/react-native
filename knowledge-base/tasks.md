@@ -1,180 +1,180 @@
 # StreakQuit - Full Task List
 
 ## 1. Foundation Setup
-- [ ] Confirm Expo app boots on iOS, Android, and web dev target.
-- [ ] Enable strict TypeScript settings and verify `tsconfig.json` quality gates.
-- [ ] Install and configure core dependencies:
-- [ ] `@react-navigation/native`
-- [ ] `@react-navigation/native-stack`
-- [ ] `@react-navigation/bottom-tabs`
-- [ ] `@react-native-async-storage/async-storage`
-- [ ] `expo-notifications`
-- [ ] `expo-linear-gradient` (if needed for visual polish)
-- [ ] `expo-in-app-purchases` or target IAP package used by Expo version.
-- [ ] Create base folder structure:
-- [ ] `src/navigation`
-- [ ] `src/screens/onboarding`
-- [ ] `src/screens/profile`
-- [ ] `src/screens`
-- [ ] `src/components/core`
-- [ ] `src/components/layout`
-- [ ] `src/components/features`
-- [ ] `src/state`
-- [ ] `src/storage`
-- [ ] `src/selectors`
-- [ ] `src/services/notifications`
-- [ ] `src/services/premium`
-- [ ] `src/theme`
-- [ ] `src/utils`
-- [ ] Add lint and formatting scripts if missing.
+- [X] Confirm Expo app boots on iOS, Android, and web dev target.
+- [X] Enable strict TypeScript settings and verify `tsconfig.json` quality gates.
+- [X] Install and configure core dependencies:
+- [X] `@react-navigation/native`
+- [X] `@react-navigation/native-stack`
+- [X] `@react-navigation/bottom-tabs`
+- [X] `@react-native-async-storage/async-storage`
+- [X] `expo-notifications`
+- [X] `expo-linear-gradient` (if needed for visual polish)
+- [X] `expo-in-app-purchases` or target IAP package used by Expo version.
+- [X] Create base folder structure:
+- [X] `src/navigation`
+- [X] `src/screens/onboarding`
+- [X] `src/screens/profile`
+- [X] `src/screens`
+- [X] `src/components/core`
+- [X] `src/components/layout`
+- [X] `src/components/features`
+- [X] `src/state`
+- [X] `src/storage`
+- [X] `src/selectors`
+- [X] `src/services/notifications`
+- [X] `src/services/premium`
+- [X] `src/theme`
+- [X] `src/utils`
+- [X] Add lint and formatting scripts if missing.
 
 ## 2. Domain Types and Data Contracts
-- [ ] Create TypeScript domain types:
-- [ ] `SmokingType`, `BenefitType`, `TriggerType`
-- [ ] `CravingLog`, `RelapseLog`, `JournalEntry`
-- [ ] `NotificationSettings`
-- [ ] `PremiumState`
-- [ ] `RecoveryModeState`
-- [ ] Create `UserState` interface with versioned root schema.
-- [ ] Create `initialUserState` factory for first-run defaults.
-- [ ] Define constants:
-- [ ] AsyncStorage key `@streakquit_user`
-- [ ] app state schema version
-- [ ] milestone day thresholds `[1, 7, 30, 90, 365]`
+- [X] Create TypeScript domain types:
+- [X] `SmokingType`, `BenefitType`, `TriggerType`
+- [X] `CravingLog`, `RelapseLog`, `JournalEntry`
+- [X] `NotificationSettings`
+- [X] `PremiumState`
+- [X] `RecoveryModeState`
+- [X] Create `UserState` interface with versioned root schema.
+- [X] Create `initialUserState` factory for first-run defaults.
+- [X] Define constants:
+- [X] AsyncStorage key `@streakquit_user`
+- [X] app state schema version
+- [X] milestone day thresholds `[1, 7, 30, 90, 365]`
 
 ## 3. State Management and Persistence
-- [ ] Implement React Context + `useReducer` global provider (`UserProvider`).
-- [ ] Define reducer action types:
-- [ ] `COMPLETE_ONBOARDING`
-- [ ] `ADD_CRAVING_LOG`
-- [ ] `ADD_RELAPSE_LOG`
-- [ ] `ADD_JOURNAL_ENTRY`
-- [ ] `UPDATE_REASONS`
-- [ ] `TOGGLE_PREMIUM`
-- [ ] `ACTIVATE_RECOVERY`
-- [ ] `DEACTIVATE_RECOVERY`
-- [ ] `UPDATE_NOTIFICATION_SETTINGS`
-- [ ] `RESET_APP`
-- [ ] Implement hydration flow on launch:
-- [ ] show loading state
-- [ ] load AsyncStorage
-- [ ] fallback to defaults if null
-- [ ] handle parse/version errors safely
-- [ ] Implement full-state persistence after each reducer mutation.
-- [ ] Add non-blocking error handling for storage failures.
-- [ ] Add migration strategy hook for future schema versions.
+- [X] Implement React Context + `useReducer` global provider (`UserProvider`).
+- [X] Define reducer action types:
+- [X] `COMPLETE_ONBOARDING`
+- [X] `ADD_CRAVING_LOG`
+- [X] `ADD_RELAPSE_LOG`
+- [X] `ADD_JOURNAL_ENTRY`
+- [X] `UPDATE_REASONS`
+- [X] `TOGGLE_PREMIUM`
+- [X] `ACTIVATE_RECOVERY`
+- [X] `DEACTIVATE_RECOVERY`
+- [X] `UPDATE_NOTIFICATION_SETTINGS`
+- [X] `RESET_APP`
+- [X] Implement hydration flow on launch:
+- [X] show loading state
+- [X] load AsyncStorage
+- [X] fallback to defaults if null
+- [X] handle parse/version errors safely
+- [X] Implement full-state persistence after each reducer mutation.
+- [X] Add non-blocking error handling for storage failures.
+- [X] Add migration strategy hook for future schema versions.
 
 ## 4. Business Logic and Pure Selectors
-- [ ] Implement pure selectors (no mutation):
-- [ ] `calculateCurrentStreak()`
-- [ ] `calculateLongestStreak()`
-- [ ] `calculateSmokeFreePercentage(days)`
-- [ ] `calculateMoneySaved()`
-- [ ] `calculateCigarettesAvoided()`
-- [ ] `isRecoveryModeActive()`
-- [ ] Implement smoke-free day classification by local calendar day.
-- [ ] Implement relapse-aware current streak rules (including today/yesterday logic).
-- [ ] Implement longest streak over chronological day sequence.
-- [ ] Implement clamped smoke-free percentage for last N days.
-- [ ] Implement cigarettes avoided estimate using relapse day deduction.
-- [ ] Implement money saved with 20-cigarettes-per-pack rule.
-- [ ] Implement urge resilience score and display tiers:
-- [ ] Low `<0.4`
-- [ ] Growing `0.4-0.7`
-- [ ] Strong `>0.7`
+- [X] Implement pure selectors (no mutation):
+- [X] `calculateCurrentStreak()`
+- [X] `calculateLongestStreak()`
+- [X] `calculateSmokeFreePercentage(days)`
+- [X] `calculateMoneySaved()`
+- [X] `calculateCigarettesAvoided()`
+- [X] `isRecoveryModeActive()`
+- [X] Implement smoke-free day classification by local calendar day.
+- [X] Implement relapse-aware current streak rules (including today/yesterday logic).
+- [X] Implement longest streak over chronological day sequence.
+- [X] Implement clamped smoke-free percentage for last N days.
+- [X] Implement cigarettes avoided estimate using relapse day deduction.
+- [X] Implement money saved with 20-cigarettes-per-pack rule.
+- [X] Implement urge resilience score and display tiers:
+- [X] Low `<0.4`
+- [X] Growing `0.4-0.7`
+- [X] Strong `>0.7`
 
 ## 5. Navigation Architecture
-- [ ] Build `RootNavigator` (stack): `OnboardingStack` or `MainTabs` by hydrated state.
-- [ ] Build `OnboardingNavigator` with 6 linear screens.
-- [ ] Build `MainTabNavigator` with tabs order:
-- [ ] Home
-- [ ] Craving
-- [ ] Progress
-- [ ] You
-- [ ] Build nested `ProfileNavigator` stack with:
-- [ ] `ProfileScreen`
-- [ ] `ReasonsScreen`
-- [ ] `JournalScreen`
-- [ ] `SettingsScreen`
-- [ ] `PremiumScreen`
-- [ ] Apply `navigation.reset` from onboarding completion to `MainTabs`.
-- [ ] Disable gesture-back on `OnboardingIdentity` and `OnboardingComplete`.
-- [ ] Keep Craving flow as single route with internal state machine.
-- [ ] Keep Relapse flow as modal/internal state (not separate route).
+- [X] Build `RootNavigator` (stack): `OnboardingStack` or `MainTabs` by hydrated state.
+- [X] Build `OnboardingNavigator` with 6 linear screens.
+- [X] Build `MainTabNavigator` with tabs order:
+- [X] Home
+- [X] Craving
+- [X] Progress
+- [X] You
+- [X] Build nested `ProfileNavigator` stack with:
+- [X] `ProfileScreen`
+- [X] `ReasonsScreen`
+- [X] `JournalScreen`
+- [X] `SettingsScreen`
+- [X] `PremiumScreen`
+- [X] Apply `navigation.reset` from onboarding completion to `MainTabs`.
+- [X] Disable gesture-back on `OnboardingIdentity` and `OnboardingComplete`.
+- [X] Keep Craving flow as single route with internal state machine.
+- [X] Keep Relapse flow as modal/internal state (not separate route).
 
 ## 6. Design System and Reusable UI
-- [ ] Implement theme tokens from spec:
-- [ ] colors
-- [ ] spacing scale
-- [ ] radii
-- [ ] shadows
-- [ ] Implement shared layout components:
-- [ ] `ScreenContainer`
-- [ ] `Card`
-- [ ] `SectionHeader`
-- [ ] `Divider`
-- [ ] Implement reusable feature/core components:
-- [ ] `IdentityBadge`
-- [ ] `UrgeResilienceCard`
-- [ ] `PrimaryButton`
-- [ ] `SecondaryButton`
-- [ ] `TriggerSelector`
-- [ ] `UrgeTimer`
-- [ ] `IntensitySlider`
-- [ ] `ProgressMetricCard`
-- [ ] `MilestoneCard`
-- [ ] `JournalCard`
-- [ ] `PremiumBanner`
-- [ ] Ensure no inline styles and no duplicated UI logic.
-- [ ] Validate visual tone: calm, supportive, non-gamified.
+- [X] Implement theme tokens from spec:
+- [X] colors
+- [X] spacing scale
+- [X] radii
+- [X] shadows
+- [X] Implement shared layout components:
+- [X] `ScreenContainer`
+- [X] `Card`
+- [X] `SectionHeader`
+- [X] `Divider`
+- [X] Implement reusable feature/core components:
+- [X] `IdentityBadge`
+- [X] `UrgeResilienceCard`
+- [X] `PrimaryButton`
+- [X] `SecondaryButton`
+- [X] `TriggerSelector`
+- [X] `UrgeTimer`
+- [X] `IntensitySlider`
+- [X] `ProgressMetricCard`
+- [X] `MilestoneCard`
+- [X] `JournalCard`
+- [X] `PremiumBanner`
+- [X] Ensure no inline styles and no duplicated UI logic.
+- [X] Validate visual tone: calm, supportive, non-gamified.
 
 ## 7. Onboarding Flow Implementation
-- [ ] Build `OnboardingWelcome` with identity-first framing.
-- [ ] Build `OnboardingType` and store `userType`.
-- [ ] Build `OnboardingBenefits` with multi-select `benefits[]`.
-- [ ] Build `OnboardingIdentity` commit step and set:
-- [ ] `quitStartDate`
-- [ ] `identityStartDate`
-- [ ] Build `OnboardingSetup` and collect:
-- [ ] `cigarettesPerDay`
-- [ ] `packPrice`
-- [ ] `personalReasons[]` (min 2)
-- [ ] Build `OnboardingComplete` and persist final onboarding state.
-- [ ] Trigger notification permission request at onboarding completion.
+- [X] Build `OnboardingWelcome` with identity-first framing.
+- [X] Build `OnboardingType` and store `userType`.
+- [X] Build `OnboardingBenefits` with multi-select `benefits[]`.
+- [X] Build `OnboardingIdentity` commit step and set:
+- [X] `quitStartDate`
+- [X] `identityStartDate`
+- [X] Build `OnboardingSetup` and collect:
+- [X] `cigarettesPerDay`
+- [X] `packPrice`
+- [X] `personalReasons[]` (min 2)
+- [X] Build `OnboardingComplete` and persist final onboarding state.
+- [X] Trigger notification permission request at onboarding completion.
 
 ## 8. Home Screen
-- [ ] Show identity badge text style: "Day X as a Non-Smoker".
-- [ ] Show urge resilience status and supportive explanation.
-- [ ] Add quick actions:
-- [ ] "I feel a craving"
-- [ ] "I slipped"
-- [ ] "I need motivation"
-- [ ] Wire action to open Craving tab/flow.
-- [ ] Wire "I slipped" to relapse modal/internal flow.
-- [ ] Add optional upsell entry point outside crisis contexts.
+- [X] Show identity badge text style: "Day X as a Non-Smoker".
+- [X] Show urge resilience status and supportive explanation.
+- [X] Add quick actions:
+- [X] "I feel a craving"
+- [X] "I slipped"
+- [X] "I need motivation"
+- [X] Wire action to open Craving tab/flow.
+- [X] Wire "I slipped" to relapse modal/internal flow.
+- [X] Add optional upsell entry point outside crisis contexts.
 
 ## 9. Craving Intervention Flow
-- [ ] Implement single-screen state machine steps:
-- [ ] Trigger selection
-- [ ] normalization copy
-- [ ] 3-minute urge timer
-- [ ] intensity check start/end
-- [ ] replacement ritual
-- [ ] completion and identity reminder
-- [ ] Add trigger-specific normalization messages.
-- [ ] Implement timer UX for 3 to 5 minute peak education.
-- [ ] Log craving entry with `resisted` and intensity delta.
-- [ ] Display progress feedback without guilt framing.
+- [X] Implement single-screen state machine steps:
+- [X] Trigger selection
+- [X] normalization copy
+- [X] 3-minute urge timer
+- [X] intensity check start/end
+- [X] replacement ritual
+- [X] completion and identity reminder
+- [X] Add trigger-specific normalization messages.
+- [X] Implement timer UX for 3 to 5 minute peak education.
+- [X] Log craving entry with `resisted` and intensity delta.
+- [X] Display progress feedback without guilt framing.
 
 ## 10. Relapse and Recovery Mode Flow
-- [ ] Build relapse logging flow in Home context/modal.
-- [ ] Capture trigger and timestamp for each relapse.
-- [ ] Ensure messaging is non-shaming and data-oriented.
-- [ ] Do not hard-reset all progress to zero.
-- [ ] Display longest streak, smoke-free percentage, and avoided cigarettes.
-- [ ] Activate recovery mode for 48 hours on relapse.
-- [ ] Extend recovery expiry by 48 hours if relapse occurs during active mode.
-- [ ] Surface additional recovery support UX while active.
+- [X] Build relapse logging flow in Home context/modal.
+- [X] Capture trigger and timestamp for each relapse.
+- [X] Ensure messaging is non-shaming and data-oriented.
+- [X] Do not hard-reset all progress to zero.
+- [X] Display longest streak, smoke-free percentage, and avoided cigarettes.
+- [X] Activate recovery mode for 48 hours on relapse.
+- [X] Extend recovery expiry by 48 hours if relapse occurs during active mode.
+- [X] Surface additional recovery support UX while active.
 
 ## 11. Progress Screen
 - [ ] Show metrics cards:
